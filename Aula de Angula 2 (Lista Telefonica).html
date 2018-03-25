@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="ListaTelefonica">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Telefonica</title>
+    <link href="C:/Users/lauro-pc/Documents/Curso JavasScript/prog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="C:/Users/lauro-pc/Documents/Curso JavasScript/prog/css/bootstrap-theme.css" rel="stylesheet">
+    <script src="C:/Users/lauro-pc/Documents/Curso-de-AngularJS/Aulas Angular/angular.js"></script>
+    <style>
+    .table table-striped{
+        margin-left: auto;
+        margin-bottom: auto;
+        margin-top: auto;
+        margin-right: auto;
+    }
+    </style>
+    <script>
+        angular.module("ListaTelefonica", []);//nome do modulo(ListaTelefoica). [] conjunto de modulos que quer importar(bootstrap, ngtable, nggrid etc...)
+        angular.module("ListaTelefonica").controller("ListaTelefonicaCtrl", function($scope){
+            $scope.app = "Lista Telefonica"
+            $scope.contatos = [ 
+            {nome: 'Antonio', telefone: "22334455"},
+            {nome: 'Ana', telefone: "211445566"},
+            {nome: 'Cesar', telefone: "26688555"},
+            {nome: 'Marcia', telefone: "123234345"}
+          ];
+          
+          
+          $scope.adicionarContato = function(contato){
+            $scope.contatos.push(angular.copy(contato));
+           // delete $scope.contato
+          }
+        })
+
+    </script>
+</head>
+
+
+<body ng-controller="ListaTelefonicaCtrl">
+<h1>BUTSTRAPI</h1>
+    <div class='jumbotron'>
+         <!--<h4 ng-bind='app'></h4>-->
+         <!--<h4>{{app + ' ' + "Teste " + 20*20}}</h4>-->
+       <h3>{{app}}</h3 >
+       <!--{{contato}}-->
+        <table class='table table-striped'>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+
+            <tr ng-repeat='contato in contatos'>
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+            </tr>
+        <hr>
+
+        </table>
+        <!--PROCURAR SOBRE TWO-WAY-DATA-BIND-->
+        <input class="form-control" type="text" ng-model="contato.nome" placeholder=" Nome"/>
+        <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone"/>
+        <button class="btn btn-primary" ng-click="adicionarContato(contato)">Adicionar contato</button>
+    </div>
+
+</body>
+</html>
